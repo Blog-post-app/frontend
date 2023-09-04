@@ -25,6 +25,7 @@ import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { toast } from 'react-toastify';
 import CommentList from '../components/CommentList';
 import { io } from 'socket.io-client';
+import DOMPurify from 'dompurify';
 
 const socket = io('/', {
     reconnection: true
@@ -67,6 +68,9 @@ const SinglePost = () => {
         }
     }
 
+    const sanitizedData = () => ({
+        __html: DOMPurify.sanitize(content)
+      })
     useEffect(() => {
         displaySinglePost();
     }, [])
@@ -129,7 +133,7 @@ const SinglePost = () => {
                                 />
                                 <CardContent>
                                     <Typography variant="body2" color="text.secondary">
-                                        <Box component='span' dangerouslySetInnerHTML={{ __html: content }}></Box>
+                                        <Box component='span' dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(content)}}></Box>
                                     </Typography>
                                     <Divider variant="inset" />
                                     {/* add coment list */}

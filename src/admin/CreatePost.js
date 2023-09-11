@@ -1,4 +1,4 @@
-import { Box, Button, TextField, Typography } from '@mui/material'
+import { Box, Button, TextField, Typography,FormControl,Select,MenuItem,InputLabel } from '@mui/material'
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Dropzone from 'react-dropzone'
@@ -38,15 +38,17 @@ const CreatePost = () => {
         initialValues: {
             title: '',
             content: '',
+            type:'',
             image: null,
         },
-
         validationSchema: validationSchema,
         onSubmit: (values, actions) => {
             createNewPost(values);
-            //alert(JSON.stringify(values, null, 2));
+            alert(JSON.stringify(values, null, 2));
             actions.resetForm();
         },
+
+
     });
 
 
@@ -95,7 +97,25 @@ const CreatePost = () => {
                         />
                         <Box component='span' sx={{ color: '#d32f2f', fontSize: "12px", pl: 2 }}>{touched.content && errors.content}</Box>
                     </Box>
+                    <div className='w-[20%] pb-3 text-slate-800'>
+                    <FormControl fullWidth>
+  <InputLabel id="demo-simple-select-label">Type</InputLabel>
+  <Select
+    labelId="demo-simple-select-label"
+    id="demo-simple-select"
+    value={values.type}
+    label="Type"
+    onChange={(e) => setFieldValue('type', e.target.value)}
+  >
+    <MenuItem value={"Makaleler"}>Makaleler</MenuItem>
+    <MenuItem value={"Yazılar"}>Yazılar</MenuItem>
+    <MenuItem value={"Şiirler"}>Şiirler</MenuItem>
+    <MenuItem value={"Gündeme Dair"}>Gündeme Dair</MenuItem>
 
+    
+  </Select>
+</FormControl>
+                    </div>
                     <Box border='2px dashed blue' sx={{ p: 1 }}>
                         <Dropzone
                             acceptedFiles=".jpg,.jpeg,.png"
@@ -164,4 +184,4 @@ const CreatePost = () => {
     )
 }
 
-export default CreatePost
+export default CreatePost

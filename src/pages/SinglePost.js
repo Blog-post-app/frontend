@@ -101,7 +101,9 @@ const SinglePost = () => {
       <Navbar />
         <div className="flex flex-col justify-center place-items-center h-auto pt-12 w-full px-[20%] pb-12">
 
-            <h1 className="title font-bold text-4xl pb-3 h-auto tracking-wider leading-relaxed	subpixel-antialiased">{title}</h1>
+            <h1 className="title font-bold text-4xl pb-8 h-auto tracking-wider leading-relaxed	subpixel-antialiased">{title}</h1>
+            <img src={image} className="h-auto shadow-lg"></img>
+
             <div className="flex flex-row w-full pt-8 pb-6">
                 <div className="w-[60px] h-[60px] rounded-full bg-red-200 text-center pt-3 text-2xl font-bold">R</div>
                 <div className="flex flex-col pl-6">
@@ -110,8 +112,7 @@ const SinglePost = () => {
                 </div>
             </div>
             <div className=" border-t-2 border-slate-200 w-full h-auto pt-6">
-                <img src={image} className="h-auto shadow-lg"></img>
-                <p className="text-md tracking-wider leading-relaxed	subpixel-antialiased		pt-5">{content}</p>
+                <p className="text-md tracking-wider leading-relaxed	subpixel-antialiased">{content}</p>
             </div>
 
         </div>
@@ -120,5 +121,4 @@ const SinglePost = () => {
   );
 };
 
-export default SinglePost;
-
+export default SinglePost;

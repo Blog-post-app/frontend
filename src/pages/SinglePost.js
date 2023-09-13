@@ -42,6 +42,7 @@ const SinglePost = () => {
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
   const [commentsRealTime, setCommentsRealTime] = useState([]);
+  const decodedHTML = (new DOMParser().parseFromString(content, 'text/html')).body.textContent;
 
   const { id } = useParams();
   //fetch single post
@@ -112,8 +113,8 @@ const SinglePost = () => {
                 </div>
             </div>
             <div className=" border-t-2 border-slate-200 w-full h-auto pt-6">
-                <p className="text-md tracking-wider leading-relaxed	subpixel-antialiased">{content}</p>
-            </div>
+    <p className="text-md tracking-wider leading-relaxed subpixel-antialiased" dangerouslySetInnerHTML={{ __html: decodedHTML }}></p>
+  </div>
 
         </div>
       {/* <Footer /> */}

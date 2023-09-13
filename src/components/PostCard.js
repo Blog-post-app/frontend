@@ -65,8 +65,8 @@ const PostCard = ({
       key={id}
       className="h-auto w-auto shadow-sm grid grid-cols-4 gap-8 cursor-pointer duration-200 hover:shadow-md pr-4"
     >
-      <Link to={`/post/${id}`}>
-        <img src={image ? image : ""} className="col-span-1"></img>
+      <Link to={`/post/${id}`} className=" m-auto h-[200px]  overflow-hidden object-cover">
+        <img src={image ? image : ""} className="col-span-1 w-auto "></img>
       </Link>
 
       <div className="col-span-3 flex flex-col">

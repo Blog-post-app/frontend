@@ -67,7 +67,7 @@ const AdminDashboard = () => {
             headerName: 'Image',
             width: 150,
             renderCell: (params) => (
-                <img width="40%" src={params.row.image.url} />
+                <img width="40%"  />
             )
 
         },

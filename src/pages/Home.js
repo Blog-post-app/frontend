@@ -7,6 +7,7 @@ import axios from "axios";
 import moment from "moment";
 import Loader from "../components/Loader";
 import { io } from "socket.io-client";
+import { useSelector } from "react-redux";
 
 const socket = io("/", {
   reconnection: true,
@@ -17,23 +18,25 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [postAddLike, setPostAddLike] = useState([]);
   const [postRemoveLike, setPostRemoveLike] = useState([]);
-
+  const { section } = useSelector((state) => state.section);
   //display posts
 
-  const showPosts = async () => {
+  const showPosts = async (section) => {
     setLoading(true);
     try {
-      const { data } = await axios.get("/api/posts/show");
+      const { data } = await axios.get(`/api/feed/${section.toLowerCase()}`);
       setPosts(data.posts);
       setLoading(false);
     } catch (error) {
       console.log(error.response.data.error);
+      setPosts([]);
+
     }
   };
 
   useEffect(() => {
-    showPosts();
-  }, []);
+    showPosts(section);
+  }, [section]);
 
   useEffect(() => {
     socket.on("add-like", (newPosts) => {
@@ -54,20 +57,23 @@ const Home = () => {
       : posts;
 
   return (
-    <div className="h-full w-full fixed bg-slate-50">
-      <div className="w-auto h-auto flex flex-col pt-12 gap-12 px-32 pb-12 bg-slate-50">
+    <div className="h-full w-full fixed bg-slate-50 overflow-scroll">
+      <Navbar />
+      <h3 className="text-3xl text-center text-slate-800 pt-12">{section}</h3>
+      <div className="w-auto h-auto flex flex-col pt-12 gap-12 px-56 pb-12 bg-slate-50">
         {uiPosts.map((post) => (
-         <PostCard
-         id={post._id}
-         title={post.title}
-         content={post.content}
-         image={post.image ? post.image.url : ''}
-         subheader={moment(post.createdAt).format('MMMM DD, YYYY')}
-         comments={post.comments.length}
-         likes={post.likes.length}
-         likesId={post.likes}
-         showPosts={showPosts}
-     />
+          <PostCard
+            key={post._id}
+            id={post._id}
+            title={post.title}
+            content={post.content}
+            image={post.image ? post.image.url : ""}
+            subheader={moment(post.createdAt).format("MMMM DD, YYYY")}
+            comments={post.comments.length}
+            likes={post.likes.length}
+            likesId={post.likes}
+            showPosts={showPosts}
+          />
         ))}
       </div>
     </div>

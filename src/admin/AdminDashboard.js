@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,useLayoutEffect } from 'react'
 import { Box, Button, Paper, Typography } from '@mui/material'
 import { DataGrid, gridClasses } from '@mui/x-data-grid';
 import { Link } from 'react-router-dom';
@@ -9,24 +9,34 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { toast } from 'react-toastify';
-
+import { useSelector,useDispatch } from "react-redux";
+import {sectionChange} from "../redux/actions/sectionAction"
 
 const AdminDashboard = () => {
 
     const [posts, setPosts] = useState([]);
+    const { section } = useSelector((state) => state.section);
+    const dispatch = useDispatch()
 
-    const displayPost = async () => {
+    
+    const displayPost = async (section) => {
         try {
-            const { data } = await axios.get('/api/posts/show');
+            const { data } = await axios.get(`/api/feed/${section.toLowerCase()}`);
+            console.log(section)
             setPosts(data.posts);
         } catch (error) {
             console.log(error);
         }
     }
-
+    useLayoutEffect(() => {
+        dispatch(sectionChange("anasayfa"));
+    },[])
     useEffect(() => {
-        displayPost();
-    }, [])
+
+        displayPost(section);
+    }, [section])
+
+    
 
 
     //delete post by Id
@@ -46,7 +56,7 @@ const AdminDashboard = () => {
         }
     }
 
-
+    
 
     const columns = [
 
@@ -67,7 +77,7 @@ const AdminDashboard = () => {
             headerName: 'Image',
             width: 150,
             renderCell: (params) => (
-                <img width="40%"  />
+                <img width="40%" src={params.row.image.url} />
             )
 
         },
@@ -124,7 +134,7 @@ const AdminDashboard = () => {
 
     return (
         <Box >
-            
+            <h3>{section}</h3>
             <Typography variant="h4" sx={{ color: "black", pb: 3 }}>
                 Posts
             </Typography>

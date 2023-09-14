@@ -182,13 +182,13 @@ export default function Navbar() {
         </MenuItem>
         <MenuItem
           className="!pl-7"
-          onClick={() => changeSectionHandler("Yazılar")}
+          onClick={() => changeSectionHandler("Yazilar")}
         >
           Yazılar
         </MenuItem>
         <MenuItem
           className="!pl-7"
-          onClick={() => changeSectionHandler("Şiirler")}
+          onClick={() => changeSectionHandler("Siirler")}
         >
           Şiirler
         </MenuItem>
@@ -200,14 +200,14 @@ export default function Navbar() {
         </MenuItem>
         <MenuItem
           className="!pl-7 !pr-4"
-          onClick={() => changeSectionHandler("Hakkımda")}
+          onClick={() => changeSectionHandler("Gundeme-Dair")}
         >
           Gündeme Dair
         </MenuItem>
 
         <MenuItem
           className="!pl-7"
-          onClick={() => changeSectionHandler("Hakkımda")}
+          onClick={() => changeSectionHandler("Hakkimda")}
         >
           Hakkımda
         </MenuItem>
@@ -265,23 +265,23 @@ export default function Navbar() {
               <MenuItem onClick={() => changeSectionHandler("Anasayfa")}>
                 <Link to={"/"}>Anasayfa</Link>
               </MenuItem>
-              <MenuItem onClick={() => changeSectionHandler("Yazılar")}>
+              <MenuItem onClick={() => changeSectionHandler("Yazilar")}>
               Yazılar
 
               </MenuItem>
-              <MenuItem onClick={() => changeSectionHandler("Şiirler")}>
+              <MenuItem onClick={() => changeSectionHandler("Siirler")}>
                 Şiirler
 
               </MenuItem>
               <MenuItem onClick={() => changeSectionHandler("Makaleler")}>
                Makaleler
               </MenuItem>
-              <MenuItem onClick={() => changeSectionHandler("Gündeme Dair")}>
+              <MenuItem onClick={() => changeSectionHandler("Gundeme-Dair")}>
            Gündeme Dair
 
               </MenuItem>
 
-              <MenuItem onClick={() => changeSectionHandler("Hakkımda")}>
+              <MenuItem onClick={() => changeSectionHandler("Hakkimda")}>
                Hakkımda
 
               </MenuItem>

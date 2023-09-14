@@ -44,7 +44,7 @@ const CreatePost = () => {
         validationSchema: validationSchema,
         onSubmit: (values, actions) => {
             createNewPost(values);
-            alert(JSON.stringify(values, null, 2));
+            // alert(JSON.stringify(values, null, 2));
             actions.resetForm();
         },
 

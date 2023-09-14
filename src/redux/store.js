@@ -20,7 +20,7 @@ let initialState = {
     signIn: {
         userInfo: localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
     },
-    section:{section:"show"}
+    section:{section:"Anasayfa"}
     
 
 };

@@ -18,6 +18,7 @@ import EditPost from './admin/EditPost';
 import UserDashboard from './user/UserDashboard';
 import SinglePost from './pages/SinglePost';
 import Navbar from './components/Navbar';
+import Hakkimda from './components/Hakkimda';
 
 //HOC
 const AdminDashboardHOC = Layout(AdminDashboard);
@@ -36,6 +37,8 @@ const App = () => {
           <BrowserRouter>
             <Routes>
               <Route path='/' element={<Home />} />
+              <Route path='/hakkimda' element={<><Navbar></Navbar> <Hakkimda /></>} />
+
               <Route path='/login' element={<LogIn />} />
               <Route path='/register' element={<Register />} />
               <Route path='/post/:id' element={<SinglePost />} />

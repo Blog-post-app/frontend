@@ -56,7 +56,7 @@ const CreatePost = () => {
 
     const createNewPost = async (values) => {
         try {
-            const { data } = await axios.post('/api/post/create', values);
+            const { data } = await axios.post('/api/admin/create-post', values);
             toast.success('post created');
         } catch (error) {
             console.log(error);
